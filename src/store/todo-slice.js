@@ -1,21 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialToDoState = {
-    todoList: [
-        {
-            id:1,
-            title:'clean room',
-            description:'do like this',
-            status:true
-        },
-        {
-            id:2,
-            title:'learn react',
-            description:'follow course',
-            status:false
-        }
-    ]
-
+    todoList: [],
+    isModified:false
 }
 
 
@@ -29,14 +16,16 @@ const TodoReducer = createSlice({
                 id:Math.random(),
                 title:title,
                 description:description
-            })
+            });
+            state.isModified = true;
         },
         removeTodo(state,action){
             const todoID = action.payload;
             const existingTodo = state.todoList.find((item)=>item.id === todoID);
             if(existingTodo){
                 state.todoList = state.todoList.filter((item) => item.id !== todoID);
-            }
+            };
+            state.isModified = true;
         },
         markAsDone(state,action){
             const todoID = action.payload;
@@ -44,9 +33,11 @@ const TodoReducer = createSlice({
             if(existingTodo){
                 existingTodo.status = true;
             }
+            state.isModified = true;
         },
-        replaceTodos(){
-
+        replaceTodos(state,action){
+            console.log("::::::",action.payload)
+            state.todoList = action.payload || [];
         }
     }
 });
