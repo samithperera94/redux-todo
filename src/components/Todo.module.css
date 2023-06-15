@@ -6,6 +6,9 @@
     padding: 1rem;
     margin: 0.5rem;
 }
+.todo.done{
+    background-color: rgb(88, 233, 184);
+}
 .titleWrapper{
     display: flex;
     flex-direction: row;
@@ -24,6 +27,7 @@
     display: flex;
 }
 button{
+    cursor: pointer;
     border: none;
     color: white;
     padding: 15px 32px;
